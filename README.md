@@ -1,24 +1,112 @@
-# NMVA_Tool
-INTRO:
+# NMVA Tool
 
-This Python script is a network scanning and vulnerability assessment tool designed to help identify potential security risks within a local network. It leverages the Nmap utility to perform various scans, including port scanning, service identification, and vulnerability detection.
+## Overview
 
-The tool provides a user-friendly interface that allows you to select different scan options based on your specific needs. It automatically determines your local IP address and subnet range, making it easy to scan your network without requiring manual configuration.
+**NMVA Tool** (Network Mapping & Vulnerability Assessment Tool) is a Python-based utility designed to help you identify potential security risks within your local network. It leverages the power of [Nmap](https://nmap.org/) to perform comprehensive network scans, including port scanning, service identification, and vulnerability detection—all from a simple command-line interface.
 
-By using this script, you can gain valuable insights into the security posture of your network and take proactive steps to address any identified vulnerabilities.
+---
 
+## Features
 
-Tools and Libraries:
-Tools:
-Nmap: A versatile network scanning utility used for port scanning, service identification, and vulnerability detection.
+- **Automatic Network Detection:**  
+  Automatically detects your local IP address and subnet range—no manual configuration required.
 
-Libraries:
-subprocess: A Python standard library module used to execute shell commands and capture their output.
-socket: A Python standard library module for network programming, used to retrieve the local IP address.
-ipaddress: A Python standard library module for working with IP addresses and networks.
-banner: A custom-written Python module (or a third-party library) used to generate a visually appealing banner.
-utility: A custom-written Python module (or a third-party library) containing utility functions for finding the local IP address and subnet range.
-scanner: A custom-written Python module (or a third-party library) containing the scan_subnet function for performing network scans.
+- **Flexible Scanning Options:**  
+  Choose from multiple scan types:
+  - Scan all hosts for open ports
+  - Scan active hosts for the first 1000 ports and identify running services
+  - Full vulnerability scan on all open ports
+  - Prioritized vulnerability scan on the first 1000 ports
 
-NOTE:
-The Network Security Scanner is a valuable asset for network administrators, security professionals, and individuals seeking to assess the security of their local networks. It offers a comprehensive suite of features to identify vulnerabilities, track changes, and ensure compliance with industry standards. However, it is essential to use this tool responsibly and ethically. Any misuse of the Network Security Scanner, such as unauthorized scanning of networks or malicious activities, can have serious legal and ethical consequences. Users are solely responsible for their actions and any potential negative outcomes arising from the misuse of this tool.
+- **User-Friendly Interface:**  
+  Simple prompts guide you through the scanning process.
+
+- **Clear Output:**  
+  Results are displayed in a readable format for easy analysis.
+
+---
+
+## Requirements
+
+- **Python 3.6+**
+- **Nmap** (must be installed and accessible from your system's PATH)
+
+### Python Libraries
+
+- `subprocess`
+- `socket`
+- `ipaddress`
+
+All required libraries are part of the Python standard library.
+
+---
+
+## Installation
+
+1. **Clone this repository:**
+   ```bash
+   git clone <repository-url>
+   cd NMVA_Tool
+   ```
+
+2. **Ensure Nmap is installed:**
+   ```bash
+   sudo apt update
+   sudo apt install nmap
+   ```
+
+3. **Run the tool:**
+   ```bash
+   python3 main.py
+   ```
+
+---
+
+## Usage
+
+1. **Start the tool:**
+   ```bash
+   python3 main.py
+   ```
+
+2. **Follow the prompts:**
+   - The tool will display your local IP and subnet.
+   - Choose a scan option by entering the corresponding number.
+   - View the scan results directly in your terminal.
+
+3. **Repeat or exit:**
+   - After each scan, you can choose to run another scan or exit the tool.
+
+---
+
+## File Structure
+
+```
+banner.py      # Displays the tool banner
+main.py        # Main entry point and user interface
+scanner.py     # Handles Nmap scanning logic
+utility.py     # Utility functions for IP and subnet detection
+README.md      # This documentation
+```
+
+---
+
+## Ethical Notice
+
+> **Use Responsibly:**  
+> This tool is intended for educational and authorized security assessment purposes only.  
+> **Unauthorized scanning of networks is illegal and unethical.**  
+> You are solely responsible for your actions and any consequences arising from misuse.
+
+---
+
+## Credits
+
+- **CFCS2R Internship Project**
+- Developed as a learning and demonstration tool for network security assessment.
+
+---
+
+## License
+
+This project is provided for educational purposes. Please review and comply with all applicable laws and regulations before use.
