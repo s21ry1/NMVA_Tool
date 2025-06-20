@@ -1,0 +1,5 @@
+# Standard library only, but for Docker and future extensibility, include:
+logging
+# For subprocess, socket, ipaddress: standard library, no need to add
+# If you want to use Flask for a web interface, uncomment the next line:
+# flask

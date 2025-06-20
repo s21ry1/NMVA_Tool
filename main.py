@@ -4,9 +4,16 @@ import socket
 import ipaddress
 from utility import find_local_ip, find_subnet_range, ip_range
 from scanner import scan_subnet
+import logging
+import os
 
 if __name__ == "__main__":
-    tool_name = ""
+    tool_name = "NMVA Tool"
+
+    # Setup logging
+    log_level = os.environ.get("LOG_LEVEL", "INFO").upper()
+    logging.basicConfig(level=log_level, format='%(asctime)s - %(levelname)s - %(message)s')
+    logger = logging.getLogger(__name__)
 
     while True:
         generate_banner(tool_name)
@@ -34,27 +41,32 @@ if __name__ == "__main__":
 
             # Based on choice run the appropriate scan
 
-            if choice == "1":
-                print()
-                print("Scanning all active hosts to find if there are any open ports and determine running services.....")
-                scan_result = scan_subnet(subnet)
+            try:
+                if choice == "1":
+                    print()
+                    print("Scanning all active hosts to find if there are any open ports and determine running services.....")
+                    scan_result = scan_subnet(subnet)
 
-            elif choice == "2":
-                print()
-                print("Scanning all the active hosts for the first 1000 ports to determine running services.....")
-                scan_result = scan_subnet(subnet, ports="1-1000")
+                elif choice == "2":
+                    print()
+                    print("Scanning all the active hosts for the first 1000 ports to determine running services.....")
+                    scan_result = scan_subnet(subnet, ports="1-1000")
 
-            elif choice == "3":
-                print()
-                print("Scanning all the active hosts on all ports to determine if any running services have vulnerabilities.....")
-                scan_result = scan_subnet(subnet, script="vuln")
+                elif choice == "3":
+                    print()
+                    print("Scanning all the active hosts on all ports to determine if any running services have vulnerabilities.....")
+                    scan_result = scan_subnet(subnet, script="vuln")
 
-            elif choice == "4":
-                print()
-                print("Scanning all active hosts on the first 1000 ports to determine if any services have vulnerabilities.....")
-                scan_result = scan_subnet(subnet, ports="1-1000", script="vuln")
-            else:
-                print("Invalid choice.")  # Error handling, print invalid choice if any other option is entered
+                elif choice == "4":
+                    print()
+                    print("Scanning all active hosts on the first 1000 ports to determine if any services have vulnerabilities.....")
+                    scan_result = scan_subnet(subnet, ports="1-1000", script="vuln")
+                else:
+                    print("Invalid choice.")
+                    logger.warning(f"Invalid scan option selected: {choice}")
+                    scan_result = None
+            except Exception as e:
+                logger.error(f"Error during scanning: {e}")
                 scan_result = None
 
             if scan_result:
@@ -63,9 +75,11 @@ if __name__ == "__main__":
                 print()
                 print(scan_result)
             else:
-                print("Scan failed or no vulnerabilities found.")  # Error handling, print error message if scan was unsuccessful
+                print("Scan failed or no vulnerabilities found.")
+                logger.info("Scan failed or no vulnerabilities found.")
         else:
-            print("Unable to retrieve local IP address.")  # Error handling, print error if unable to find the local IP
+            print("Unable to retrieve local IP address.")
+            logger.error("Unable to retrieve local IP address.")
         print()
         run_again = input("Do you want to run the program again? (yes/no): ")
         if run_again.lower() != 'yes':
