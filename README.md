@@ -1,7 +1,7 @@
 # NMVA Tool
 
 NMVA Tool (Network Mapping & Vulnerability Assessment Tool) is a Python-based CLI utility for scanning local networks, identifying open ports, running services, and potential vulnerabilities using Nmap. It is designed for security assessment, learning, and demonstration purposes.
-
+more features should be added in future
 ---
 
 ## Features
