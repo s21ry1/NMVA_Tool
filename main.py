@@ -1,11 +1,10 @@
-from banner import generate_banner
-import subprocess
-import socket
-import ipaddress
-from utility import find_local_ip, find_subnet_range, ip_range
-from scanner import scan_subnet
+
 import logging
 import os
+from banner import generate_banner
+from utility import find_local_ip, find_subnet_range, ip_range
+from scanner import scan_subnet
+
 
 if __name__ == "__main__":
     tool_name = "NMVA Tool"
@@ -26,8 +25,6 @@ if __name__ == "__main__":
             print(f"The calculated CIDR notation is: {subnet}")
             ip_range(subnet)
 
-            # Asks users for their choice of scan
-
             print()
             print("Choose a scan option:")
             print()
@@ -38,8 +35,6 @@ if __name__ == "__main__":
 
             print()
             choice = input("Enter your choice (1/2/3/4): ")
-
-            # Based on choice run the appropriate scan
 
             try:
                 if choice == "1":
