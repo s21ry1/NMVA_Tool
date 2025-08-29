@@ -14,7 +14,7 @@ more features should be added in future
 
 ---
 
-## Requirements
+## Requirements and Dependencies
 
 - Python 3.6+
 - Nmap (must be installed and accessible in the container or host)
